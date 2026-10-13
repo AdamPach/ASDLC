@@ -5,7 +5,7 @@ description: "Test"
 
 # Goal
 
-Create or update a product request definition and its supporting documents within a dedicated folder. Use the user's description and available context to clarify the request's purpose, scope, and intended behavior, asking questions where needed. Focus clarification on product behavior and rules rather than technical implementation choices. The main document should capture the current understanding and confirmed requirements, clearly distinguishing assumptions and unresolved points. Where useful, provide separate question documents to support further clarification.
+Create or update a feature definition and its supporting documents within a dedicated folder. Use the user's description and available context to clarify the request's purpose, scope, and intended behavior, asking questions where needed. Focus clarification on product behavior and rules rather than technical implementation choices. The main document should capture the current understanding and confirmed requirements, clearly distinguishing assumptions and unresolved points. Where useful, provide separate question documents to support further clarification.
 
 # Terminology
 
