@@ -42,3 +42,13 @@ Determine the working mode from the user's intent and available context. Use Cre
 - UI mockups, screenshots, sketches, or user flows illustrating the intended appearance or behavior.
 - Prior decisions, constraints, or dependencies relevant to the update.
 - Additional supporting material from the Requester that helps clarify the requested changes.
+
+# Output Documents
+
+Based on the available inputs, create or update the Feature Definition and any supporting question documents. Together, these documents serve as a decision map for the feature, capturing its purpose, scope, intended behavior, and, where relevant, appearance. They summarize relevant context and confirmed product decisions, distinguish assumptions from confirmed requirements, and identify open questions and decisions that still need to be resolved.
+
+# Workflow
+
+# Clarification Guide
+
+# When the Feature is Ready
