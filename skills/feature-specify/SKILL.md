@@ -47,6 +47,35 @@ Determine the working mode from the user's intent and available context. Use Cre
 
 Based on the available inputs, create or update the Feature Definition and any supporting question documents. Together, these documents serve as a decision map for the feature, capturing its purpose, scope, intended behavior, and, where relevant, appearance. They summarize relevant context and confirmed product decisions, distinguish assumptions from confirmed requirements, and identify open questions and decisions that still need to be resolved.
 
+## Folder Structure
+
+```text
+docs/
+└── features/
+    ├── 001-short-request-name/
+    │   ├── feature-definition.md
+    │   ├── questions-001.md
+    │   └── questions-002.md
+    └── 002-another-request-name/
+        └── feature-definition.md
+```
+
+## Location and Naming
+
+Store software documentation under `docs/` at the target project's root. Use `docs/features/NNN-short-request-name/` for each Product Request. Number request folders sequentially from `001` and use lowercase names with hyphens. Reuse the existing request folder in Update mode.
+
+## Feature Definition
+
+Maintain `feature-definition.md` as the current understanding and agreed outcome of the Product Request. Include relevant existing behavior and distinguish confirmed requirements, assumptions, and unresolved points. Keep the definition understandable without reading the interview documents.
+
+## Interview Documents
+
+Create `questions-NNN.md` when clarification is needed, one file per interview round, numbered sequentially from `001` within the request folder. Group questions by topic and keep each answer with its question. Distinguish proposed answers from confirmed answers. Incorporate confirmed outcomes into the Feature Definition and retain completed interview documents as history.
+
+## Document Templates
+
+Use the [Feature Definition](templates/feature-definition.md) and [interview round](templates/interview-round.md) templates for document structure. Their sections are not yet defined; interview topic headings may vary by round.
+
 # Workflow
 
 # Clarification Guide
