@@ -5,7 +5,7 @@ description: "Test"
 
 # Goal
 
-Create or update a feature definition and its supporting documents within a dedicated folder. Use the user's description and available context to clarify the request's purpose, scope, and intended behavior, asking questions where needed. Focus clarification on product behavior and rules rather than technical implementation choices. The main document should capture the current understanding and confirmed requirements, clearly distinguishing assumptions and unresolved points. Where useful, provide separate question documents to support further clarification.
+Create or update a feature definition and its supporting documents within a dedicated folder. Use the user's description and available context to clarify the request's purpose, scope, and intended behavior, asking questions where needed. Focus clarification on product behavior and rules rather than technical implementation choices. The main document should capture the current understanding and confirmed requirements, clearly distinguishing assumptions and unresolved points. Record each clarification round in a separate interview document.
 
 # Terminology
 
@@ -70,14 +70,33 @@ Maintain `feature-definition.md` as the current understanding and agreed outcome
 
 ## Interview Documents
 
-Create `questions-NNN.md` when clarification is needed, one file per interview round, numbered sequentially from `001` within the request folder. Group questions by topic and keep each answer with its question. Distinguish proposed answers from confirmed answers. Incorporate confirmed outcomes into the Feature Definition and retain completed interview documents as history.
+Create `questions-NNN.md` when clarification is needed, one file per interview round, numbered sequentially from `001` within the request folder. Preserve every question and keep its answer alongside it. The Requester may answer in chat or directly in the file; keep the document updated. Distinguish proposals, confirmed answers, and unresolved points. Use `Awaiting answer` until answered. Keep skipped or unknown answers unresolved. Incorporate confirmed outcomes into the Feature Definition and retain completed interview documents as history.
 
 ## Document Templates
 
-Use the [Feature Definition](templates/feature-definition.md) and [interview round](templates/interview-round.md) templates for document structure. Their sections are not yet defined; interview topic headings may vary by round.
+Use the [Feature Definition](templates/feature-definition.md) and [Interview Round](templates/interview-round.md) templates for document structure. Interview topic headings may vary by round. Remove authoring comments and replace placeholders in generated documents.
 
 # Workflow
 
 # Clarification Guide
+
+## Question Generation
+
+Use the `questions` skill in Generate mode for one round at a time. Supply the Product Request as the topic and limit the perspective to business needs and product behavior: how it should work, not how to implement it. Include available context, prior answers, confirmed decisions, assumptions, and open points. Supply the formats below. This skill owns the saved documents.
+
+Include all relevant unanswered questions that can be asked from the current context. Do not impose a question limit or restrict a round to one topic. Check available sources first. Defer questions whose prerequisites depend on new answers. Use each round's answers to generate the next round; revisit answered questions only when new information affects them.
+
+## Question Format
+
+Ask one clear question at a time. Keep sentences short. Add brief context and impact when useful. Allow custom answers and never invent choices to fit a format. Put justified recommendations first and explain them briefly.
+
+- [Single select](question-types/single-select.md): choose one alternative.
+- [Multi select](question-types/multi-select.md): choose several applicable options.
+- [Entity modeling](question-types/entity-modeling.md): review proposed entity information, relationships, and business rules. Avoid database design.
+- [Open text](question-types/open-text.md): answer freely when choices or a table do not fit.
+
+## Round Organization
+
+Group questions by logical topic using `##` headings. Topics may mix question types. Use `### Q[N] — [Short title]` for each question. Number questions consecutively across the round, starting at `Q1`. Repeat topic sections and question blocks as needed.
 
 # When the Feature is Ready

@@ -1,11 +1,11 @@
 ---
-name: questions
+name: interview
 description: "Clarify a topic through adaptive interview rounds. Generate questions for users or calling skills."
 ---
 
 # Goal
 
-Generate questions that help the user or calling skill clarify a topic from a selected perspective. Use answers to build shared understanding, expose assumptions, and resolve relevant uncertainties.  Guide the interview through an internal decision map. Each round should clarify open points and reveal which questions to ask next. Adapt to answers rather than follow a fixed questionnaire. In Interview mode, continue until the user confirms the summary of decisions and remaining open points. In Generate mode, return one question round for the caller to use.
+Generate questions that help the user or calling skill clarify a topic from a selected perspective. Use answers to build shared understanding, expose assumptions, and resolve relevant uncertainties. Guide the interview through an internal decision map. Each round should clarify open points and reveal which questions to ask next. Adapt to answers rather than follow a fixed questionnaire. In Interview mode, continue until the user confirms the summary of decisions and remaining open points. In Generate mode, return one question round for the caller to use.
 
 # Input
 
@@ -16,6 +16,8 @@ Generate questions that help the user or calling skill clarify a topic from a se
 - **Question format:** Optional. Use the default below unless another format is supplied.
 
 # Question Rules
+
+Use the Ask User tool or an equivalent user-input tool for every question asked of the user. This includes opening questions, topic and perspective selection, follow-ups, and final confirmation. Custom question formats do not override this requirement. Only when no such tool is available, use the same structured question format in the conversation.
 
 - Stay within the selected perspective. Overall covers all relevant aspects.
 - Resolve uncertainty, test assumptions, or clarify decisions.
@@ -32,8 +34,6 @@ Offer up to three meaningful choices. Put a justified recommendation first. Do n
 
 Always allow free text. Use the tool's built-in free-text input when available.
 
-In Interview mode, prefer the Ask User tool. Otherwise, present questions in the conversation.
-
 # Process
 
 1. Establish the topic and perspective.
@@ -47,4 +47,4 @@ In Interview mode, prefer the Ask User tool. Otherwise, present questions in the
 
 # Output and Completion
 
-Write no files. Calling skills own exports and stored history. Generate mode returns questions. Use supplied answers to generate later rounds. Interview mode ends with a short summary of agreed understanding, decisions, and open points. Ask the user to confirm it. Resolve corrections before finishing. Confirmation completes the interview. It does not authorize downstream work.
+Write no files. Calling skills own exports and stored history. Generate mode returns questions. Use supplied answers to generate later rounds.  In Interview mode, summarize the agreed understanding, decisions, and open points. Explicitly ask: “Have we reached a shared understanding, or does anything need correcting?” Wait for explicit user approval before completing the interview. Silence or ambiguous replies do not count as approval. If corrections are needed, resolve them, update the summary, and ask again. Confirmation completes the interview. It does not authorize downstream work.
