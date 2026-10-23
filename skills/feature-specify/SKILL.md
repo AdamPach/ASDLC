@@ -1,6 +1,6 @@
 ---
 name: feature-specify
-description: "Test"
+description: "Create or update a feature definition from a product request. Use to clarify scope, product behavior, and business rules through questions, resolve gaps and contradictions, and confirm readiness for feature-create. Leave technical implementation choices for later."
 ---
 
 # Goal
@@ -78,11 +78,17 @@ Use the [Feature Definition](templates/feature-definition.md) and [Interview Rou
 
 # Workflow
 
+1. Read the Product Request and available context. Determine the mode and target folder using the Inputs and Output Documents sections.
+2. In Create mode, save an initial Feature Definition before asking clarification questions. Mark assumptions and unknowns explicitly. In Update mode, read the existing definition and interview documents. Check new information for conflicts with existing decisions. Incorporate confirmed changes and flag conflicts for clarification.
+3. Review the definition using the six areas under When the Feature is Ready. If clarification is needed, generate one round using the Clarification Guide. Save the questions in an interview document. Present them to the Requester and wait for answers.
+4. Record the answers. Check them against each other and existing decisions. If answers conflict, explain the conflict and ask whether the Requester intends to change an earlier decision. Incorporate confirmed outcomes into the definition. Retain superseded decisions in the interview history.
+5. Review all six areas again after each update. If gaps remain, continue directly to the next needed clarification round. Keep skipped or unknown answers unresolved. Do not require approval of intermediate drafts. When the review passes, follow the confirmation and handoff steps below.
+
 # Clarification Guide
 
 ## Question Generation
 
-Use the `questions` skill in Generate mode for one round at a time. Supply the Product Request as the topic and limit the perspective to business needs and product behavior: how it should work, not how to implement it. Include available context, prior answers, confirmed decisions, assumptions, and open points. Supply the formats below. This skill owns the saved documents.
+Use the `interview` skill in Generate mode for one round at a time. Supply the Product Request as the topic and limit the perspective to business needs and product behavior: how it should work, not how to implement it. Include available context, prior answers, confirmed decisions, assumptions, and open points. Supply the formats below. This skill owns the saved documents and readiness assessment.
 
 Include all relevant unanswered questions that can be asked from the current context. Do not impose a question limit or restrict a round to one topic. Check available sources first. Defer questions whose prerequisites depend on new answers. Use each round's answers to generate the next round; revisit answered questions only when new information affects them.
 
@@ -100,3 +106,28 @@ Ask one clear question at a time. Keep sentences short. Add brief context and im
 Group questions by logical topic using `##` headings. Topics may mix question types. Use `### Q[N] — [Short title]` for each question. Number questions consecutively across the round, starting at `Q1`. Repeat topic sections and question blocks as needed.
 
 # When the Feature is Ready
+
+## Readiness Review
+
+Review the complete Feature Definition, including behavior not covered by interview questions. Assess these six areas within the agreed scope:
+
+- **Purpose and scope:** Intended users, desired outcome, included behavior, and exclusions.
+- **Flows:** Triggers, normal paths, alternative paths, failures, and recovery.
+- **Business rules and information:** Relevant entities, fields, validation, relationships, and state changes.
+- **Access:** Who can access the feature and what they can see or do.
+- **Experience and constraints:** Relevant appearance, interactions, accessibility, and product limits.
+- **Verifiable outcomes:** Observable behavior that distinguishes correct from incorrect results.
+
+Assign each area a status and briefly explain the assessment:
+
+- **Resolved:** Relevant product behavior is defined and consistent. No missing detail, ambiguity, or unconfirmed assumption affects that behavior.
+- **Not applicable:** The area does not apply to this feature. State why.
+- **Unresolved:** Relevant details are missing, ambiguous, contradictory, or based on unconfirmed assumptions. Identify what must be clarified.
+
+The review passes only when every area is Resolved or Not applicable. Any Unresolved area prevents readiness and feeds further clarification. Leave technical implementation choices for later.
+
+## Confirmation and Handoff
+
+When the review passes, present the assessment and ask the Requester to explicitly confirm the complete Feature Definition. If corrections are requested, update the definition, repeat the review, and ask for confirmation again. Silence or ambiguous replies do not count as confirmation.
+
+The feature is ready only when the review passes and the Requester confirms the complete definition. Then recommend using `feature-create` in a new session to convert the clarified material into one compact feature file. Provide the path to the definition and its supporting documents for that handoff.
