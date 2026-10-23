@@ -1,11 +1,5 @@
 # Feature Definition: [Name]
 
-<!--
-Keep the four core sections. Mark unknowns explicitly.
-Keep optional sections only when useful. Remove optional labels and template prompts.
-Define each requirement once. Link related details.
--->
-
 ## Request and Purpose
 
 - Request: [What is wanted.]
@@ -55,3 +49,10 @@ Define each requirement once. Link related details.
 
 [Explain significant tradeoffs. Link supporting answers or sources.]
 [Keep full discussions and superseded decisions in interview documents.]
+
+## Readiness Summary
+
+- Status: [Ready / Not ready. Ready requires a passed review and explicit confirmation.]
+- Reason: [Brief review result. Identify unresolved areas or missing confirmation. Link relevant details above.]
+- Confirmation: [Whether the Requester explicitly confirmed the current definition.]
+- Next step: [What is needed to proceed or resume. When ready, use feature-create in a new session.]

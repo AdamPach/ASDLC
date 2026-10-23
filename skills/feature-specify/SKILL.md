@@ -68,6 +68,10 @@ Store software documentation under `docs/` at the target project's root. Use `do
 
 Maintain `feature-definition.md` as the current understanding and agreed outcome of the Product Request. Include relevant existing behavior and distinguish confirmed requirements, assumptions, and unresolved points. Keep the definition understandable without reading the interview documents.
 
+Always include Request and Purpose, Context and Scope, Intended Behavior, and Assumptions and Open Questions. Mark unknowns explicitly. Place the Readiness Summary at the end.
+
+Add optional sections when they help explain the feature. Capture all relevant behavior even when an optional section is omitted. Define each requirement once and link related details. Remove optional labels and template prompts from the finished document.
+
 ## Interview Documents
 
 Create `questions-NNN.md` when clarification is needed, one file per interview round, numbered sequentially from `001` within the request folder. Preserve every question and keep its answer alongside it. The Requester may answer in chat or directly in the file; keep the document updated. Distinguish proposals, confirmed answers, and unresolved points. Use `Awaiting answer` until answered. Keep skipped or unknown answers unresolved. Incorporate confirmed outcomes into the Feature Definition and retain completed interview documents as history.
@@ -82,7 +86,9 @@ Use the [Feature Definition](templates/feature-definition.md) and [Interview Rou
 2. In Create mode, save an initial Feature Definition before asking clarification questions. Mark assumptions and unknowns explicitly. In Update mode, read the existing definition and interview documents. Check new information for conflicts with existing decisions. Incorporate confirmed changes and flag conflicts for clarification.
 3. Review the definition using the six areas under When the Feature is Ready. If clarification is needed, generate one round using the Clarification Guide. Save the questions in an interview document. Present them to the Requester and wait for answers.
 4. Record the answers. Check them against each other and existing decisions. If answers conflict, explain the conflict and ask whether the Requester intends to change an earlier decision. Incorporate confirmed outcomes into the definition. Retain superseded decisions in the interview history.
-5. Review all six areas again after each update. If gaps remain, continue directly to the next needed clarification round. Keep skipped or unknown answers unresolved. Do not require approval of intermediate drafts. When the review passes, follow the confirmation and handoff steps below.
+5. Review all six areas again after each update. Update the Readiness Summary at the end of the definition. If answerable gaps remain, continue directly to the next needed clarification round. Do not require approval of intermediate drafts. When the review passes, follow the confirmation and handoff steps below.
+
+If a required answer is unavailable, keep it unresolved and continue with other answerable questions. Revisit it when new information is available or the Requester is ready to answer. If no further clarification can progress, stop the rounds. Use the Readiness Summary to explain why the feature is not ready and what is needed to resume.
 
 # Clarification Guide
 
@@ -94,7 +100,7 @@ Include all relevant unanswered questions that can be asked from the current con
 
 ## Question Format
 
-Ask one clear question at a time. Keep sentences short. Add brief context and impact when useful. Allow custom answers and never invent choices to fit a format. Put justified recommendations first and explain them briefly.
+Each question should address one clear decision. Keep sentences short. Add brief context and impact when useful. Allow custom answers and never invent choices to fit a format. Put justified recommendations first and explain them briefly.
 
 - [Single select](question-types/single-select.md): choose one alternative.
 - [Multi select](question-types/multi-select.md): choose several applicable options.
@@ -103,7 +109,7 @@ Ask one clear question at a time. Keep sentences short. Add brief context and im
 
 ## Round Organization
 
-Group questions by logical topic using `##` headings. Topics may mix question types. Use `### Q[N] — [Short title]` for each question. Number questions consecutively across the round, starting at `Q1`. Repeat topic sections and question blocks as needed.
+Group questions by logical topic using `##` headings. Topics may mix question types. Insert complete question-type blocks beneath each topic. Each block supplies its question heading and answer field. Number questions consecutively across the round, starting at `Q1`. Repeat topic sections and question blocks as needed.
 
 # When the Feature is Ready
 
@@ -126,8 +132,19 @@ Assign each area a status and briefly explain the assessment:
 
 The review passes only when every area is Resolved or Not applicable. Any Unresolved area prevents readiness and feeds further clarification. Leave technical implementation choices for later.
 
+## Readiness Summary
+
+Keep a short Readiness Summary as the final section of the Feature Definition. Update it whenever the definition, review result, or confirmation changes. Record:
+
+- **Status:** Ready or Not ready.
+- **Reason:** Brief review result. If not ready, identify unresolved areas or missing confirmation. Link existing details instead of repeating them.
+- **Confirmation:** Whether the Requester explicitly confirmed the current definition.
+- **Next step:** What is needed to proceed or resume clarification. When ready, state the handoff to `feature-create`.
+
+If requirements change after confirmation, mark the definition Not ready. Require a new review and confirmation of the updated definition. Wording-only edits that preserve requirements do not invalidate confirmation.
+
 ## Confirmation and Handoff
 
 When the review passes, present the assessment and ask the Requester to explicitly confirm the complete Feature Definition. If corrections are requested, update the definition, repeat the review, and ask for confirmation again. Silence or ambiguous replies do not count as confirmation.
 
-The feature is ready only when the review passes and the Requester confirms the complete definition. Then recommend using `feature-create` in a new session to convert the clarified material into one compact feature file. Provide the path to the definition and its supporting documents for that handoff.
+The feature is ready only when the review passes and the Requester confirms the complete definition. Record that confirmation and mark the Readiness Summary Ready. Then recommend using `feature-create` in a new session to convert the clarified material into one compact feature file. Provide the path to the definition and its supporting documents for that handoff.
