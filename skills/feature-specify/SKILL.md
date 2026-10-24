@@ -1,6 +1,7 @@
 ---
 name: feature-specify
 description: "Create or update a feature definition from a product request. Use to clarify scope, product behavior, and business rules through questions, resolve gaps and contradictions, and confirm readiness for feature-create. Leave technical implementation choices for later."
+disable-model-invocation: true
 ---
 
 # Goal
