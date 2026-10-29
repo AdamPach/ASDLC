@@ -1,5 +1,7 @@
 ---
 name: interview
+metadata:
+  version: "0.1"
 description: "Clarify a topic through adaptive interview sessions. Generate question batches for users or calling skills."
 ---
 
