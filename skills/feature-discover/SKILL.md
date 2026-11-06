@@ -1,8 +1,8 @@
 ---
-name: feature-specify
+name: feature-discover
 metadata:
   version: "0.1"
-description: "Create or update a feature definition from a product request. Use to clarify scope, product behavior, and business rules through questions, resolve gaps and contradictions, and confirm readiness for feature-create. Leave technical implementation choices for later."
+description: "Create or update a feature definition from a product request. Use to clarify scope, product behavior, and business rules through questions, resolve gaps and contradictions, and confirm readiness for feature-write. Leave technical implementation choices for later."
 disable-model-invocation: true
 ---
 
@@ -142,7 +142,7 @@ Keep a short Readiness Summary as the final section of the Feature Definition. U
 - **Status:** Ready or Not ready.
 - **Reason:** Brief review result. If not ready, identify unresolved areas or missing confirmation. Link existing details instead of repeating them.
 - **Confirmation:** Whether the Requester explicitly confirmed the current definition.
-- **Next step:** What is needed to proceed or resume clarification. When ready, state the handoff to `feature-create`.
+- **Next step:** What is needed to proceed or resume clarification. When ready, state the handoff to `feature-write`.
 
 If requirements change after confirmation, mark the definition Not ready. Require a new review and confirmation of the updated definition. Wording-only edits that preserve requirements do not invalidate confirmation.
 
@@ -150,4 +150,4 @@ If requirements change after confirmation, mark the definition Not ready. Requir
 
 When the review passes, present the assessment and ask the Requester to explicitly confirm the complete Feature Definition. If corrections are requested, update the definition, repeat the review, and ask for confirmation again. Silence or ambiguous replies do not count as confirmation.
 
-The feature is ready only when the review passes and the Requester confirms the complete definition. Record that confirmation and mark the Readiness Summary Ready. Then recommend using `feature-create` in a new session to convert the clarified material into one compact feature file. Provide the path to the definition and its supporting documents for that handoff.
+The feature is ready only when the review passes and the Requester confirms the complete definition. Record that confirmation and mark the Readiness Summary Ready. Then recommend using `feature-write` in a new session to convert the clarified material into one compact feature file. Provide the path to the definition and its supporting documents for that handoff.

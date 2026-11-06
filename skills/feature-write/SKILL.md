@@ -1,5 +1,5 @@
 ---
-name: feature-create
+name: feature-write
 metadata:
   version: "0.1"
 description: "Create one compact Markdown document from an already defined feature. Use to document its business purpose and behavior without clarifying the feature or choosing its technical implementation."

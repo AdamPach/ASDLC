@@ -55,4 +55,4 @@
 - Status: [Ready / Not ready. Ready requires a passed review and explicit confirmation.]
 - Reason: [Brief review result. Identify unresolved areas or missing confirmation. Link relevant details above.]
 - Confirmation: [Whether the Requester explicitly confirmed the current definition.]
-- Next step: [What is needed to proceed or resume. When ready, use feature-create in a new session.]
+- Next step: [What is needed to proceed or resume. When ready, use feature-write in a new session.]

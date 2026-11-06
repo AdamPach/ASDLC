@@ -12,7 +12,7 @@ Create an implementation plan and an ordered set of work items from a feature do
 
 # Terminology
 
-- **Feature document:** The Markdown document created by `feature-create`. It holds the feature's business information. It is the source of business requirements, and this skill does not change it.
+- **Feature document:** The Markdown document created by `feature-write`. It holds the feature's business information. It is the source of business requirements, and this skill does not change it.
 - **Developer:** The person running the skill. The developer makes the implementation decisions and is responsible for the product.
 - **Implementation decision:** An agreed choice about how to implement the feature, such as where it fits in the codebase, which libraries it uses, or how data and interfaces change.
 - **Implementation plan:** The document that holds the feature-wide implementation decisions and the split.
@@ -26,7 +26,7 @@ Create an implementation plan and an ordered set of work items from a feature do
 
 # Inputs
 
-- **Feature document:** Required. Created by `feature-create`, usually at `docs/features/<feature-name>.md`. Ask if missing.
+- **Feature document:** Required. Created by `feature-write`, usually at `docs/features/<feature-name>.md`. Ask if missing.
 - **Codebase:** Required. The project the feature will be implemented in.
 - **Context:** Optional. Developer notes, constraints, or prior technical decisions.
 
@@ -72,7 +72,7 @@ Use judgment to cut the feature, and explain the reasoning for each cut.
 - **Working product:** Every work item leaves a working product and may expose its behavior when completed. Do not plan feature flags, hidden entry points, or similar mechanisms.
 - **Coverage:** Assign every behavior and business rule in the feature document to a work item, and every implementation decision to the work items that apply it. Plan nothing the feature document does not require.
 
-Present each work item with its number, title, type, complexity, goal, covered behavior, and reasoning. If the split seems too long for one feature, say why and let the developer decide whether to continue or return to `feature-specify`.
+Present each work item with its number, title, type, complexity, goal, covered behavior, and reasoning. If the split seems too long for one feature, say why and let the developer decide whether to continue or return to `feature-discover` or `feature-discover-quick`.
 
 # Completion Criteria
 
