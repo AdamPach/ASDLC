@@ -54,5 +54,5 @@
 
 - Status: [Ready / Not ready. Ready requires a passed review and explicit confirmation.]
 - Reason: [Brief review result. Identify unresolved areas or missing confirmation. Link relevant details above.]
-- Confirmation: [Whether the Requester explicitly confirmed the current definition.]
-- Next step: [What is needed to proceed or resume. When ready, use feature-write in a new session.]
+- Confirmation: [Whether the developer explicitly confirmed the current definition in chat.]
+- Next step: [What is needed to proceed or resume, such as the interview document the PO should answer. When ready, use feature-write in this session or a new one.]

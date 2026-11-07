@@ -2,25 +2,27 @@
 name: feature-discover
 metadata:
   version: "0.1"
-description: "Create or update a feature definition from a product request. Use to clarify scope, product behavior, and business rules through questions, resolve gaps and contradictions, and confirm readiness for feature-write. Leave technical implementation choices for later."
+description: "Create or update a feature definition from a product request. Use to clarify scope, product behavior, and business rules through interview documents answered by the product owner, resolve gaps and contradictions, and confirm readiness for feature-write. Leave technical implementation choices for later."
 disable-model-invocation: true
 ---
 
 # Goal
 
-Create or update a feature definition and its supporting documents within a dedicated folder. Use the user's description and available context to clarify the request's purpose, scope, and intended behavior, asking questions where needed. Focus clarification on product behavior and rules rather than technical implementation choices. The main document should capture the current understanding and confirmed requirements, clearly distinguishing assumptions and unresolved points. Record each clarification round in a separate interview document.
+Turn a Product Request into a Feature Definition that defines its product behavior completely and consistently, and that the developer confirms is ready for `feature-write`. Reach it through interview rounds answered by the PO, keeping assumptions and open points visible until they are resolved.
 
 # Terminology
 
 - **Product Request** - A proposal for a new product capability or a change to an existing one. It may be vague or incomplete.
-- **Requester** - the person who submits the product request
+- **Product Owner (PO)** - The person who makes product decisions for the Product Request and answers clarification questions in interview documents.
+- **Developer** - The person who runs this skill, shares interview documents with the PO, and confirms the final Feature Definition in chat.
+- **Interview round** - One set of clarification questions for the PO, saved as one `questions-NNN.md` interview document.
 - **Feature** - A product capability being introduced or changed by the product request.
 - **Feature Definition** - The main document produced or updated by this skill. It captures the currently understood requirements and behavior and may remain incomplete while relevant questions are unresolved.
 - **Mode** - Whether the current run creates a new Feature Definition or updates an existing one. The mode concerns the definition document, regardless of whether the request introduces a new capability or changes an existing one.
 
 # Inputs
 
-Determine the working mode from the user's intent and available context. Use Create when a new Feature Definition is requested and Update when an existing Feature Definition is to be revised. If the intended mode or target definition is unclear, ask a focused clarification question.
+Determine the working mode from the user's intent and available context. Use Create when a new Feature Definition is requested and Update when an existing Feature Definition is to be revised. Use Update also to continue clarification after the PO answers a round. Update accepts definitions created by `feature-discover-quick`. If the intended mode or target definition is unclear, ask a focused clarification question.
 
 ## Create
 
@@ -31,24 +33,24 @@ Determine the working mode from the user's intent and available context. Use Cre
 - Relevant product context, including intended users, goals, known constraints, and prior decisions.
 - Existing documentation, code, or examples of current product behavior.
 - UI mockups, screenshots, sketches, or user flows illustrating the intended appearance or behavior.
-- Supporting documents or examples from the Requester that help clarify the request.
+- Supporting documents or examples from the PO or developer that help clarify the request.
 
 ## Update
 
 **Required Input:**
 - The existing Feature Definition, provided directly or identifiable from references, available context, or existing files.
-- New or revised information to incorporate, such as requested changes, clarifications, or answers to previously identified questions.
+- New or revised information to incorporate, such as answers in interview documents or changes and clarifications from the developer.
 
 **Optional Context:**
-- Existing question documents, including answered and unresolved questions.
+- Existing interview documents, including answered and unresolved questions. Definitions created by `feature-discover-quick` may have none.
 - Relevant product documentation, code, or examples of current behavior.
 - UI mockups, screenshots, sketches, or user flows illustrating the intended appearance or behavior.
 - Prior decisions, constraints, or dependencies relevant to the update.
-- Additional supporting material from the Requester that helps clarify the requested changes.
+- Additional supporting material from the PO or developer that helps clarify the requested changes.
 
 # Output Documents
 
-Based on the available inputs, create or update the Feature Definition and any supporting question documents. Together, these documents serve as a decision map for the feature, capturing its purpose, scope, intended behavior, and, where relevant, appearance. They summarize relevant context and confirmed product decisions, distinguish assumptions from confirmed requirements, and identify open questions and decisions that still need to be resolved.
+Based on the available inputs, create or update the Feature Definition and any supporting interview documents. Together, these documents serve as a decision map for the feature, capturing its purpose, scope, intended behavior, and, where relevant, appearance. They summarize relevant context and confirmed product decisions, distinguish assumptions from confirmed requirements, and identify open questions and decisions that still need to be resolved.
 
 ## Folder Structure
 
@@ -77,7 +79,7 @@ Add optional sections when they help explain the feature. Capture all relevant b
 
 ## Interview Documents
 
-Create `questions-NNN.md` when clarification is needed, one file per interview round, numbered sequentially from `001` within the request folder. Preserve every question and keep its answer alongside it. The Requester may answer in chat or directly in the file; keep the document updated. Distinguish proposals, confirmed answers, and unresolved points. Use `Awaiting answer` until answered. Keep skipped or unknown answers unresolved. Incorporate confirmed outcomes into the Feature Definition and retain completed interview documents as history.
+Create `questions-NNN.md` when clarification is needed, one file per interview round, numbered sequentially from `001` within the request folder. Preserve every question. The PO answers directly in the file, alongside each question. Distinguish proposals, confirmed answers, and unresolved points. Use `Awaiting answer` until answered. Mark a question repeated in a later round `Carried to Round NNN`. Keep skipped or unknown answers unresolved. Incorporate confirmed outcomes into the Feature Definition and retain completed interview documents as history.
 
 ## Document Templates
 
@@ -86,12 +88,15 @@ Use the [Feature Definition](templates/feature-definition.md) and [Interview Rou
 # Workflow
 
 1. Read the Product Request and available context. Determine the mode and target folder using the Inputs and Output Documents sections.
-2. In Create mode, save an initial Feature Definition before asking clarification questions. Mark assumptions and unknowns explicitly. In Update mode, read the existing definition and interview documents. Check new information for conflicts with existing decisions. Incorporate confirmed changes and flag conflicts for clarification.
-3. Review the definition using the six areas under When the Feature is Ready. If clarification is needed, generate one round using the Clarification Guide. Save the questions in an interview document. Present them to the Requester and wait for answers.
-4. Record the answers. Check them against each other and existing decisions. If answers conflict, explain the conflict and ask whether the Requester intends to change an earlier decision. Incorporate confirmed outcomes into the definition. Retain superseded decisions in the interview history.
-5. Review all six areas again after each update. Update the Readiness Summary at the end of the definition. If answerable gaps remain, continue directly to the next needed clarification round. Do not require approval of intermediate drafts. When the review passes, follow the confirmation and handoff steps below.
+2. In Create mode, save an initial Feature Definition. Mark assumptions and unknowns explicitly. In Update mode, read the existing definition and interview documents. Record answers from the latest round and incorporate other new information. If the latest round has no new answers and the developer supplied no other new information, report that the round awaits answers and end the run without changes. If no rounds exist yet, continue.
+3. Check answers and new information against each other and existing decisions. Incorporate confirmed outcomes into the definition. Keep each conflict unresolved; in the next round, explain it and ask the PO whether to change the earlier decision. Retain superseded decisions in the interview history.
+4. Review all six areas under When the Feature is Ready and update the Readiness Summary.
+5. End the run in one of these ways:
+   - **Review passes:** Follow Confirmation and Handoff.
+   - **Clarification can progress:** Generate one round using the Clarification Guide. Repeat the previous round's unanswered questions, linking each to its original. Save the round. Tell the developer which file the PO should answer and to rerun this skill in Update mode afterwards.
+   - **Nothing can progress:** Use the Readiness Summary to explain why the feature is not ready and what is needed to resume.
 
-If a required answer is unavailable, keep it unresolved and continue with other answerable questions. Revisit it when new information is available or the Requester is ready to answer. If no further clarification can progress, stop the rounds. Use the Readiness Summary to explain why the feature is not ready and what is needed to resume.
+Ask product questions only in interview documents. Ask the developer in chat only to clarify the mode or target definition and for final confirmation. Do not ask for approval of intermediate drafts. Ask skipped or unknown questions again only when new information is available.
 
 # Clarification Guide
 
@@ -141,13 +146,15 @@ Keep a short Readiness Summary as the final section of the Feature Definition. U
 
 - **Status:** Ready or Not ready.
 - **Reason:** Brief review result. If not ready, identify unresolved areas or missing confirmation. Link existing details instead of repeating them.
-- **Confirmation:** Whether the Requester explicitly confirmed the current definition.
-- **Next step:** What is needed to proceed or resume clarification. When ready, state the handoff to `feature-write`.
+- **Confirmation:** Whether the developer explicitly confirmed the current definition in chat.
+- **Next step:** What is needed to proceed or resume, such as the interview document the PO should answer. When ready, state the handoff to `feature-write`.
 
 If requirements change after confirmation, mark the definition Not ready. Require a new review and confirmation of the updated definition. Wording-only edits that preserve requirements do not invalidate confirmation.
 
 ## Confirmation and Handoff
 
-When the review passes, present the assessment and ask the Requester to explicitly confirm the complete Feature Definition. If corrections are requested, update the definition, repeat the review, and ask for confirmation again. Silence or ambiguous replies do not count as confirmation.
+When the review passes, present the assessment in chat and ask the developer to explicitly confirm the complete Feature Definition. Documents-only clarification does not apply to this confirmation. Silence or ambiguous replies do not count as confirmation.
 
-The feature is ready only when the review passes and the Requester confirms the complete definition. Record that confirmation and mark the Readiness Summary Ready. Then recommend using `feature-write` in a new session to convert the clarified material into one compact feature file. Provide the path to the definition and its supporting documents for that handoff.
+If the developer requests corrections, apply those the developer can decide, including behavior the developer states the PO already agreed to. Then repeat the review and ask for confirmation again. If a correction needs a new PO decision, save it in a new round and end the run as in Workflow step 5.
+
+The feature is ready only when the review passes and the developer confirms the complete definition. Record that confirmation and mark the Readiness Summary Ready. Then recommend using `feature-write`, in this session or a new one, to convert the clarified material into one compact feature file. Provide the path to the definition and its supporting documents for that handoff.

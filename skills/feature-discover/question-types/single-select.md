@@ -1,4 +1,4 @@
-<!-- Use when the Requester needs to choose one alternative for a decision.
+<!-- Use when the PO needs to choose one alternative for a decision.
 Fill the question block below and insert it under the relevant round topic.
 Use the next question number from the round.
 Offer up to three meaningful, distinct choices; remove unused option lines.
