@@ -2,7 +2,7 @@
 
 ## Purpose and scope
 
-[Describe what the feature achieves and what it covers. Include exclusions when defined.]
+[Describe what the feature achieves and what it covers. Include relevant current behavior and exclusions when defined.]
 
 ## Users and permissions
 
@@ -14,4 +14,8 @@
 
 ## Appearance
 
-[Describe the intended appearance and reference supplied designs when available. Do not create new designs.]
+[Describe the intended appearance and link the designs the feature definition links. Do not create new designs.]
+
+## Acceptance criteria
+
+[List observable outcomes stated in the feature definition as checkable criteria, including relevant failure cases.]
