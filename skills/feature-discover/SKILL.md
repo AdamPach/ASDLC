@@ -55,19 +55,18 @@ Based on the available inputs, create or update the Feature Definition and any s
 ## Folder Structure
 
 ```text
-docs/
-└── features/
-    ├── 001-short-request-name/
-    │   ├── feature-definition.md
-    │   ├── questions-001.md
-    │   └── questions-002.md
-    └── 002-another-request-name/
-        └── feature-definition.md
+features/
+├── 001-short-request-name/
+│   ├── feature-definition.md
+│   ├── questions-001.md
+│   └── questions-002.md
+└── 002-another-request-name/
+    └── feature-definition.md
 ```
 
 ## Location and Naming
 
-Store software documentation under `docs/` at the target project's root. Use `docs/features/NNN-short-request-name/` for each Product Request. Number request folders sequentially from `001` and use lowercase names with hyphens. Reuse the existing request folder in Update mode.
+Store feature documents under `features/` at the target project's root. Use `features/NNN-short-request-name/` for each Product Request. Number request folders sequentially from `001` and use lowercase names with hyphens. Reuse the existing request folder in Update mode.
 
 ## Feature Definition
 

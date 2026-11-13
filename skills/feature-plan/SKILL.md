@@ -13,6 +13,7 @@ Create an implementation plan and an ordered set of work items from a feature do
 # Terminology
 
 - **Feature document:** The Markdown document created by `feature-write`. It holds the feature's business information. It is the source of business requirements, and this skill does not change it.
+- **Request folder:** The `features/NNN-short-request-name/` folder that contains the feature document.
 - **Developer:** The person running the skill. The developer makes the implementation decisions and is responsible for the product.
 - **Implementation decision:** An agreed choice about how to implement the feature, such as where it fits in the codebase, which libraries it uses, or how data and interfaces change.
 - **Implementation plan:** The document that holds the feature-wide implementation decisions and the split.
@@ -26,13 +27,13 @@ Create an implementation plan and an ordered set of work items from a feature do
 
 # Inputs
 
-- **Feature document:** Required. Created by `feature-write`, usually at `docs/features/<feature-name>.md`. Ask if missing.
+- **Feature document:** Required. Created by `feature-write` as `feature.md` in the request folder. Ask if missing.
 - **Codebase:** Required. The project the feature will be implemented in.
 - **Context:** Optional. Developer notes, constraints, or prior technical decisions.
 
 # Outputs
 
-Save to `docs/features/<feature-name>/`, using the feature document's name:
+Save to the request folder:
 
 - `implementation-plan.md`: Implementation decisions and the split, using the [implementation plan template](templates/implementation-plan.md).
 - `work-items/NN-<short-name>.md`: One work item per split entry, numbered from `01` in split order, using the [work item template](templates/work-item.md).
@@ -41,7 +42,7 @@ Link each work item to the implementation plan and the feature document. Work it
 
 # Workflow
 
-1. Read the feature document and explore the codebase for the modules, patterns, libraries, and data the feature affects. If the output folder already contains an implementation plan or work items, report it and stop.
+1. Read the feature document and explore the codebase for the modules, patterns, libraries, and data the feature affects. If the request folder already contains an implementation plan or work items, report it and stop.
 2. Run the implementation interview.
 3. Propose the split using Split Rules.
 4. Present the implementation plan, including the split, and ask for approval to save. On change requests, revise and ask again. Return to the interview when a change affects an implementation decision. Save only after approval.

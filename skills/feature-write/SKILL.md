@@ -14,7 +14,7 @@ Convert a Ready Feature Definition into one compact feature document. Include th
 
 - **Feature Definition:** The `feature-definition.md` document produced by `feature-discover` or `feature-discover-quick`. It is the only source of the feature's meaning.
 - **Ready:** The Feature Definition's Readiness Summary shows Status Ready and records the developer's explicit confirmation.
-- **Request folder:** The `docs/features/NNN-short-request-name/` folder that contains the Feature Definition.
+- **Request folder:** The `features/NNN-short-request-name/` folder that contains the Feature Definition.
 - **Linked material:** Mockups, designs, or other references that the Feature Definition links.
 - **Business information:** What the feature does, who can use it, and the rules and conditions governing its behavior.
 - **Feature document:** The compact `feature.md` produced by this skill.
