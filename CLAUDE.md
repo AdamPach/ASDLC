@@ -25,3 +25,17 @@ Applies whenever ASDLC.md is created or changed.
   - a document map (where project knowledge is stored),
   - a skill map (what each skill does and when AI should invoke it).
 - Project-agnostic: no references to this repository or its history.
+
+## Skills Folder
+
+Applies whenever a skill in `skills/` is created, moved, or installed.
+
+- Always: each skill lives at `skills/<group>/<skill-name>/`, and the folder name equals the skill's `name:` field.
+- Group folders exist only in this repository. When a skill is installed, copy its folder flat into the target `skills/` folder, because Claude Code discovers skills only one level deep.
+- Groups:
+  - `feature/`: skills that take a feature from product request to implementation plan.
+  - `lifecycle-updates/`: skills AI invokes automatically to keep documents current during the lifecycle.
+  - `shared/`: skills other skills use as building blocks.
+  - `draft/`: unfinished skills of any group.
+- When a skill is created: place it in `draft/`.
+- When I declare a skill finished: move it from `draft/` into the group that matches its purpose.
