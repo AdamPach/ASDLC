@@ -1,7 +1,7 @@
 ---
 name: feature-discover-quick
 metadata:
-  version: "0.1"
+  version: "0.0.1"
 description: "Create or update a feature definition through a chat interview with the developer and confirm it is ready for feature-write."
 disable-model-invocation: true
 ---

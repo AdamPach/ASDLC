@@ -1,7 +1,7 @@
 ---
 name: docs-write
 metadata:
-  version: "0.1"
+  version: "0.0.1"
 description: "Write and update project documentation under docs/ in a structure AI agents can navigate: files of at most 100 lines, one-level split folders with index.md, and docs/MAP.md. Use whenever documentation is created or a change to the project or a document makes existing documentation outdated."
 ---
 

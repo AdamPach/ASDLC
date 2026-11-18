@@ -1,7 +1,7 @@
 ---
 name: feature-write
 metadata:
-  version: "0.1"
+  version: "0.0.1"
 description: "Create one compact feature document from a Ready feature definition produced by feature-discover or feature-discover-quick. Use to document the feature's business purpose and behavior for developers and AI without clarifying the feature or choosing its technical implementation."
 disable-model-invocation: true
 ---

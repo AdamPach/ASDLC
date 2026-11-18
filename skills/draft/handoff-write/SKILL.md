@@ -1,7 +1,7 @@
 ---
 name: handoff-write
 metadata:
-  version: "0.1"
+  version: "0.0.1"
 description: "Create, update, or reset HANDOFF.md, the short-term memory of the active feature's current work. Use at the end of every turn in which work on the active feature progressed or a review produced results, and when work on a different feature starts."
 ---
 

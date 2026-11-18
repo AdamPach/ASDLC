@@ -1,7 +1,7 @@
 ---
 name: feature-discover
 metadata:
-  version: "0.1"
+  version: "0.0.1"
 description: "Create or update a feature definition from a product request. Use to clarify scope, product behavior, and business rules through interview documents answered by the product owner, resolve gaps and contradictions, and confirm readiness for feature-write. Leave technical implementation choices for later."
 disable-model-invocation: true
 ---

@@ -39,3 +39,15 @@ Applies whenever a skill in `skills/` is created, moved, or installed.
   - `draft/`: unfinished skills of any group.
 - When a skill is created: place it in `draft/`.
 - When I declare a skill finished: move it from `draft/` into the group that matches its purpose.
+
+## Skill Versioning
+
+Applies whenever a skill in `skills/` is created or changed.
+
+- Always: a skill's version is stored in its `metadata.version` field as three non-negative integers separated by dots: release, structure, change.
+- Release (first number): increment only when I declare a release.
+- Structure (second number): increment when a change alters how the skill operates: its steps, inputs, outputs, or the documents it reads or writes.
+- Change (third number): increment when a change alters the skill's files without altering how it operates.
+- When a number is incremented: reset every number to its right to 0.
+- When a skill is created: set its version to `0.0.1`.
+- When a task changes a skill: increment its version once for the whole task, at the highest level any change in that task requires.
