@@ -1,85 +1,94 @@
 ---
 name: feature-plan
 metadata:
-  version: "0.1"
-description: "Create an implementation plan and ordered work items from a feature document. Use to agree with the developer how to implement the feature in the existing codebase and split it into small, reviewable increments that keep the product working."
+  version: "0.0.1"
+description: "Turn a feature document into an implementation plan and ordered work items through a developer interview grounded in code facts."
 disable-model-invocation: true
 ---
 
 # Goal
 
-Create an implementation plan and an ordered set of work items from a feature document. Interview the developer about how to implement the feature in the existing codebase. Start from the developer's view, fill gaps, and explain options when the developer does not know. Split the feature into small work items. Each work item must leave the product working and be small enough for an AI agent to implement and the developer to review in one sitting. Keep the developer in control of and responsible for implementation decisions. Do not change business requirements.
+Turn a feature document into an implementation plan and ordered work items. The developer makes every implementation decision; business requirements never change.
 
 # Terminology
 
-- **Feature document:** The Markdown document created by `feature-write`. It holds the feature's business information. It is the source of business requirements, and this skill does not change it.
-- **Request folder:** The `features/NNN-short-request-name/` folder that contains the feature document.
-- **Developer:** The person running the skill. The developer makes the implementation decisions and is responsible for the product.
-- **Implementation decision:** An agreed choice about how to implement the feature, such as where it fits in the codebase, which libraries it uses, or how data and interfaces change.
-- **Implementation plan:** The document that holds the feature-wide implementation decisions and the split.
-- **Work item:** One small increment that an AI agent implements and the developer reviews as one pull request, described in its own document. Work items are numbered WI 1 to WI n.
-- **Split:** The ordered list of work items for the feature.
-- **Vertical slice:** A work item that adds user-observable behavior end to end, across every layer it needs.
-- **Enabler:** A work item with no new user-observable behavior that prepares the code for later work items.
-- **Working product:** The project builds and starts. Existing behavior and existing automated tests still work. The acceptance criteria of all completed work items pass.
+- **Feature document:** `feature.md` in the request folder: the feature's business description (purpose and scope, users and permissions, behavior, appearance, acceptance criteria); the source of business requirements.
+- **Request folder:** The `features/NNN-short-request-name/` folder that holds the feature document.
+- **Code facts:** Current codebase state relevant to the feature or a decision: existing implementations of similar problems and what is used now, each with its file path.
+- **Implementation decision:** An agreed choice of how to implement the feature: where it fits in the codebase, which libraries it uses, how data and interfaces change.
+- **Work item:** One increment an AI agent implements and the developer reviews as one pull request; numbered from 01 in split order.
+- **Split:** The ordered list of work items.
+- **Working product:** The project builds and starts; existing behavior and automated tests still work; the acceptance criteria of all completed work items pass.
 - **Acceptance criteria:** Observable outcomes the developer checks manually to verify a work item.
-- **Complexity:** A work item's estimated implementation demand, combining difficulty and amount of change: Small, Medium, Large, or Extra-large. It helps the developer choose a model. Every work item must still pass Size in Split Rules.
 
-# Inputs
+# Procedure
 
-- **Feature document:** Required. Created by `feature-write` as `feature.md` in the request folder. Ask if missing.
-- **Codebase:** Required. The project the feature will be implemented in.
-- **Context:** Optional. Developer notes, constraints, or prior technical decisions.
+Every step: business gap or contradiction in the feature document, or a decision that would change a business requirement → report it, stop.
 
-# Outputs
+## 1. Start
 
-Save to the request folder:
+1. Read the feature document. Ask for its path when unclear.
+2. `implementation-plan.md` or `work-items/` exists in the request folder → report it, stop.
 
-- `implementation-plan.md`: Implementation decisions and the split, using the [implementation plan template](templates/implementation-plan.md).
-- `work-items/NN-<short-name>.md`: One work item per split entry, numbered from `01` in split order, using the [work item template](templates/work-item.md).
+## 2. Explore
 
-Link each work item to the implementation plan and the feature document. Work items may link to earlier work items. Write each work item so an AI agent can implement it in a new session from the work item and its linked documents.
+1. Collect the code facts the feature touches: modules, patterns, libraries, data model, interfaces, tests.
 
-# Workflow
+## 3. Interview
 
-1. Read the feature document and explore the codebase for the modules, patterns, libraries, and data the feature affects. If the request folder already contains an implementation plan or work items, report it and stop.
-2. Run the implementation interview.
-3. Propose the split using Split Rules.
-4. Present the implementation plan, including the split, and ask for approval to save. On change requests, revise and ask again. Return to the interview when a change affects an implementation decision. Save only after approval.
-5. Write all work items and present them together. Ask for approval to save. On change requests, revise and ask again. Save only after approval.
-6. Report the saved locations, and recommend implementing WI 1 in a new session.
+1. Run `interview` in Interview mode, one session:
+   - Topic: the feature.
+   - Perspective: architecture and integration, libraries and technology, data and interfaces.
+   - Context: the feature document and code facts.
+   - Question format: the decision question format below, for decision questions.
+2. Before each decision question, collect the code facts it needs.
+   - No relevant code facts → collect research facts instead: patterns that fit the project's stack; search the web when the choice depends on current libraries, versions, or practices.
+3. Put a recommended option first only when the facts support it.
+4. Use the confirmed session's decisions as the implementation decisions.
 
-If the feature document has a business gap or contradiction at any step, report it and stop.
+Decision question format:
 
-# Implementation Interview
+```
+Question text:
+  Code facts:
+  - <fact> (<path>)
+  Research facts:
+  - <fact> (<URL> | known pattern)
+  <one question>
+Options (2–3):
+  label: <approach> [(Recommended)]
+  description: <how it works>; <tradeoff>; <reason, when recommended>
+  preview: <file layout or code sketch>, when it helps
+Free text: the tool's built-in input
+```
 
-Use `interview` in Interview mode, in one session. Supply the feature as the topic and implementation as the perspective: architecture and integration, libraries and technology choices, and data and interfaces. Supply the feature document and codebase findings as context.
+Show Code facts, or Research facts when step 2 found no relevant code facts.
 
-Supply this question format, keeping the other `interview` rules:
+## 4. Split
 
-- Ask how the developer imagines each decision first. Include relevant codebase facts, but no options or recommendation.
-- Fill gaps and challenge answers against the codebase.
-- Offer up to three explained options, with a recommendation, only when the developer does not know.
+1. Split the feature into work items per the split rules; record the reasoning for each work item boundary in the plan's Split section.
+2. Two or more splits meet the split rules and differ in scope or order → ask the developer in the decision question format.
+3. The split seems too long for one feature → explain why; the developer chooses to continue or stop.
 
-The confirmed session provides the implementation decisions for the implementation plan.
+Split rules:
+- **Vertical slice:** Default type. Adds user-observable behavior end to end, across every layer it needs.
+- **Enabler:** Adds no user-observable behavior; prepares code for later work items. Use only when it leaves a working product, has its own acceptance criteria, and a vertical slice would otherwise fail Size. Place it directly before the first work item that needs it; state why it is needed.
+- **Size:** One primary behavior or enabler goal, its own acceptance criteria, one pull request, reviewable in one sitting (roughly under an hour). Fails a check → split it.
+- **Order:** Each work item continues from the previous ones, usually starting with the simplest complete path. Implementing work items in number order causes no dependency problems.
+- **Working product:** Every work item leaves a working product and may expose its behavior. No feature flags, hidden entry points, or similar mechanisms.
+- **Coverage:** Assign every behavior, business rule, permission, appearance requirement, and feature acceptance criterion in the feature document to a work item, and every implementation decision to the work items that apply it. Plan nothing the feature document does not require; changes to existing code count when a required behavior needs them.
+- **Complexity:** Rate each work item Small, Medium, or Large by implementation demand (difficulty and amount of change) to guide model choice.
 
-# Split Rules
+## 5. Write
 
-Use judgment to cut the feature, and explain the reasoning for each cut.
+1. Write to the request folder:
+   - `implementation-plan.md` from [templates/implementation-plan.md](templates/implementation-plan.md).
+   - One `work-items/NN-<short-name>.md` per work item from [templates/work-item.md](templates/work-item.md). Write each so an AI agent can implement it in a new session from it and its linked documents.
+2. Ask one review question: the preview shows the implementation plan; the question text lists the work item paths.
+   - Like it → Report.
+   - Wording change → edit, ask again.
+   - Decision or split change → return to Interview or Split; rewrite the affected files; ask again.
 
-- **Slice type:** Make each work item a vertical slice. Use an enabler only when it leaves a working product, has its own acceptance criteria, and would otherwise make a vertical slice fail Size. State why it is needed, and place it directly before the first work item that needs it.
-- **Size:** Each work item covers one primary behavior or enabler goal, has its own acceptance criteria, fits in one pull request, and can be reviewed in one sitting, roughly under an hour. Split any work item that fails a check.
-- **Order:** Each work item naturally continues from those before it, usually starting with the simplest complete path. Implementing WI 1 to WI n in order must cause no dependency problems.
-- **Working product:** Every work item leaves a working product and may expose its behavior when completed. Do not plan feature flags, hidden entry points, or similar mechanisms.
-- **Coverage:** Assign every behavior and business rule in the feature document to a work item, and every implementation decision to the work items that apply it. Plan nothing the feature document does not require.
+## 6. Report
 
-Present each work item with its number, title, type, complexity, goal, covered behavior, and reasoning. If the split seems too long for one feature, say why and let the developer decide whether to continue or return to `feature-discover` or `feature-discover-quick`.
-
-# Completion Criteria
-
-- The developer confirmed the implementation interview session.
-- The implementation plan and work items are saved after explicit approval.
-- The split meets every Split Rule.
-- Each work item links to the implementation plan and feature document and includes acceptance criteria.
-- No template prompts remain.
-- The saved locations and the next step have been reported.
+1. Report the saved paths; recommend implementing work item 01 in a new session.

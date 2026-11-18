@@ -1,7 +1,7 @@
 # [NN]: [Title]
 
 - Type: [Vertical slice / Enabler]
-- Complexity: [Small / Medium / Large / Extra-large]
+- Complexity: [Small / Medium / Large]
 - Status: Not started
 - Feature document: [Link]
 - Implementation plan: [Link]
@@ -9,20 +9,20 @@
 
 ## Goal
 
-[Describe what this work item achieves.]
+[What this work item achieves.]
 
 ## Covered Behavior
 
-[List the feature behavior and business rules this work item implements. For an enabler, state what it prepares and for which work items.]
+[Feature behavior and business rules it implements. Enabler: what it prepares and for which work items.]
 
 ## Implementation Details
 
-[Describe what to change and where. Link the implementation decisions it applies.]
+[What to change and where. Cite the decisions it applies (D1, D2, ...).]
 
 ## Not Included
 
-[List related behavior left for later work items. State if none.]
+[Related behavior left for later work items, or None.]
 
 ## Acceptance Criteria
 
-[List manual verification steps and their expected results.]
+[Manual verification steps and expected results. Last step: the project builds and starts, and existing automated tests pass.]

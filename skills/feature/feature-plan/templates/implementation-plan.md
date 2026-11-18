@@ -4,24 +4,21 @@ Feature document: [Link]
 
 ## Approach
 
-[Summarize how the feature will be implemented and fit the existing codebase.]
+[How the feature fits the codebase, in a few sentences.]
 
-## Architecture and Integration
+## Decisions
 
-[Describe where the feature lives, which existing modules it changes or reuses, and which patterns to follow.]
+### D1 — [Title]
 
-## Libraries and Technology
-
-[List the new or existing libraries and tools used, and why.]
-
-## Data and Interfaces
-
-[Describe data model changes, migrations, APIs, and other interfaces. State if none.]
+- Area: [Architecture and integration / Libraries and technology / Data and interfaces]
+- Decision: [Chosen way]
+- Why: [Code facts, research facts, or the developer's reasoning it rests on]
+- Rejected: [Option — reason, or None]
 
 ## Split
 
-| WI | Title | Type | Complexity | Goal | Covered behavior |
-|----|-------|------|------------|------|------------------|
-| [01](work-items/01-[short-name].md) | [Title] | [Vertical slice / Enabler] | [Small / Medium / Large / Extra-large] | [Goal] | [Feature behavior and rules covered] |
+| WI | Title | Type | Complexity |
+|----|-------|------|------------|
+| [01](work-items/01-[short-name].md) | [Title] | [Vertical slice / Enabler] | [Small / Medium / Large] |
 
-[Explain the reasoning for the cut and the order. State why each enabler is needed.]
+[Reasoning for each work item boundary and the order; why each enabler is needed.]
