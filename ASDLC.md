@@ -2,13 +2,13 @@
 
 ## How to Use ASDLC
 
-- At the start of every session: read `HANDOFF.md` in the project root when it exists. Compare it with the repository before relying on it; if they differ, list the differences and ask the developer which is correct.
-- At the start of every session, when `HANDOFF.md` does not exist: continue without it. `handoff-write` creates it when work on a feature progresses.
+- At the start of every session: invoke `handoff` with event Resume.
+- During implementation: invoke `handoff` at each moment the Skill Map lists for it.
 
 ## Document Map
 
-- `HANDOFF.md` (project root, not committed): short-term memory of the active feature's current work. Each checkout, including each worktree, has its own copy or none.
+- `HANDOFF.md` (project root, not committed): short-term memory of where the active feature's implementation stands. Each checkout, including each worktree, has its own copy or none.
 
 ## Skill Map
 
-- `handoff-write`: creates, updates, or resets `HANDOFF.md`. Invoke it at the end of every turn in which work on the active feature progressed or a review produced results, and when work on a different feature starts.
+- `handoff`: starts, resumes, or records the active feature's implementation state in `HANDOFF.md`. Invoke it at session start (Resume), when implementation of a feature starts (Start), and when a work item is implemented or accepted, or the developer asks for the next work item (Record).
