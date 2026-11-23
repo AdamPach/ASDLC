@@ -23,7 +23,7 @@ Applies whenever ASDLC.md is created or changed.
 - Contains only:
   - a short guide on how to use ASDLC,
   - a document map (where project knowledge is stored),
-  - a skill map (what each skill does and when AI should invoke it).
+  - a skill map (what each skill does and when AI should invoke it). Lists only skills AI can invoke; skills only the developer invokes are excluded.
 - Project-agnostic: no references to this repository or its history.
 
 ## Skills Folder

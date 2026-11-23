@@ -1,7 +1,7 @@
 ---
 name: handoff
 metadata:
-  version: "0.1.1"
+  version: "0.1.2"
 description: "Start, resume, or record the implementation state of the active feature in HANDOFF.md, the short-term memory between sessions. Use when implementation of a feature starts, at session start, and when a work item is implemented or accepted, or the developer asks for the next work item."
 ---
 
@@ -50,8 +50,8 @@ Keep `HANDOFF.md` a short snapshot of where the active feature's implementation 
 Apply the case that matches the active work item's new state, then update Unrecorded Decisions and Open Threads.
 
 - Implemented and tested → Implemented. Update Tested.
-- Accepted (only after the developer confirms) → Done. Clear Tested. Set the next active work item; none left → Active work item: None.
-- Developer asks for the next work item while the active work item is not Done → ask whether to accept it; yes → apply Accepted; no → stop.
+- Accepted (only as part of committing the developer's finished work) → Done. Clear Tested. Set the next active work item; none left → Active work item: None.
+- Developer asks for the next work item while the active work item is not Done → tell the developer it becomes Done only when the finished work is committed; stop.
 
 # Write Rules
 
@@ -65,4 +65,4 @@ Apply whenever the handoff file is written.
 - **Statuses:** Write each status change into the work item's Status field too.
   - Not started: waiting for implementation.
   - Implemented: implemented and tested; waiting for developer acceptance.
-  - Done: the developer accepted it.
+  - Done: the developer accepted it, and it is committed.

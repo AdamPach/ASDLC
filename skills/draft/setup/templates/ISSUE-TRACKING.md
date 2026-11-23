@@ -46,6 +46,13 @@
 | Implemented | [Write state] | [Read states] |
 | Done | [Write state] | [Read states] |
 
+## Commits
+
+- Reference: [Reference syntax]
+- Referenced items: [Referenced items]
+
+[Commit template]
+
 ## Operations
 
 ### Create Feature

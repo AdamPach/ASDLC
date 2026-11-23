@@ -7,7 +7,6 @@ Applies to: planning ASDLC work not yet started. Remove an item when it is done.
 Deferred from `handoff`.
 
 - Store the issue tracker ID and link of each work item, so AI can reference it.
-- Reference the ID in commit messages, following the project's commit convention.
 - Replace the work item `Status:` field with the issue tracker's status when features are pushed to the issue tracker.
 
 ## Review Skill
@@ -32,4 +31,3 @@ Deferred from `handoff`.
 Deferred from `handoff`.
 
 - Decide how git context is used during implementation.
-- A commit skill commits an accepted work item and invokes `handoff` (event Record, Accepted) with the commit as a detail.

@@ -13,4 +13,3 @@
 ## Skill Map
 
 - `handoff`: starts, resumes, or records the active feature's implementation state in `HANDOFF.md`. Invoke it at session start (Resume), when implementation of a feature starts (Start), and when a work item is implemented or accepted, or the developer asks for the next work item (Record).
-- `setup`: configures one target per run (`.gitignore`, `docs/ISSUE-TRACKING.md`) through an interview. Only the developer invokes it, via `/setup`.
