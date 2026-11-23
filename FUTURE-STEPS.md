@@ -2,12 +2,12 @@
 
 Applies to: planning ASDLC work not yet started. Remove an item when it is done.
 
-## Issue Tracker Integration
+## Linked Material in the Tracker
 
-Deferred from `handoff`.
+Deferred from `feature-push`.
 
-- Store the issue tracker ID and link of each work item, so AI can reference it.
-- Replace the work item `Status:` field with the issue tracker's status when features are pushed to the issue tracker.
+- Push the local files that pushed documents link (mockups, designs) to the issue tracker, and rewrite their links. Until then, `feature-push` deletes them with the request folder.
+- Requires an attachment Operation in `docs/ISSUE-TRACKING.md`, defined by `setup`.
 
 ## Review Skill
 

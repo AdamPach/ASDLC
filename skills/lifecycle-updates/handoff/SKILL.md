@@ -1,8 +1,8 @@
 ---
 name: handoff
 metadata:
-  version: "0.1.2"
-description: "Start, resume, or record the implementation state of the active feature in HANDOFF.md, the short-term memory between sessions. Use when implementation of a feature starts, at session start, and when a work item is implemented or accepted, or the developer asks for the next work item."
+  version: "0.2.0"
+description: "Start, resume, or record the implementation state of the active feature in HANDOFF.md, the short-term memory between sessions; reads and writes the feature's documents and statuses in the issue tracker. Use when implementation of a feature starts, at session start, and when a work item is implemented or accepted, or the developer asks for the next work item."
 ---
 
 # Goal
@@ -12,6 +12,7 @@ Keep `HANDOFF.md` a short snapshot of where the active feature's implementation 
 # Terminology
 
 - **Handoff file:** `HANDOFF.md` in the root of the current checkout. Each checkout, including each worktree, has its own or none.
+- **Tracking file:** `docs/ISSUE-TRACKING.md`. Access the issue tracker only through its Operations.
 - **Active feature:** The feature the handoff file covers; at Start, the feature named in Details.
 - **Implementation documents:** The active feature's implementation plan and work items.
 - **Active work item:** The first work item in implementation-plan order whose status is not Done.
@@ -19,7 +20,15 @@ Keep `HANDOFF.md` a short snapshot of where the active feature's implementation 
 # Inputs
 
 - **Event:** Required. Start, Resume, or Record; each Procedure section states when it applies. Not supplied → infer it from the turn; ask when unclear.
-- **Details:** Optional. Facts for the event: the feature (Start), tests run, decisions, developer acceptance. Missing → take them from the turn.
+- **Details:** Optional. Facts for the event: the feature's tracker link or ID (Start), tests run, decisions, developer acceptance. Missing → take them from the turn.
+
+# Tracker Access
+
+Applies whenever a document or status is loaded, written, or linked.
+
+- Load the implementation documents: Load Implementation Plan; List Work Items for statuses and order; Load Work Item for the active work item only.
+- Write a status: Set Status.
+- Link an item: its tracker link; none → its ID.
 
 # Procedure
 
@@ -28,21 +37,22 @@ Keep `HANDOFF.md` a short snapshot of where the active feature's implementation 
 
 ## Start (implementation of a feature begins)
 
-1. Handoff file covers the same feature → follow Resume; stop.
-2. Handoff file covers another feature:
-   - That feature has work items not Done in its implementation documents → name them, ask whether to replace the handoff file; declined → stop.
+1. Tracking file missing → tell the developer to run `/setup issue-tracking`; stop.
+2. Handoff file covers the same feature → follow Resume; stop.
+3. Handoff file covers another feature:
+   - That feature has work items not Done → name them, ask whether to replace the handoff file; declined → stop.
    - All Done → continue silently.
-3. Read the implementation documents.
-4. Create the handoff file fresh from the template, replacing any existing one: link the implementation plan; set the active work item and its status.
+4. Find the implementation plan from the feature per the tracking file's Document Mapping and Relations.
+5. Load the implementation documents.
+6. Create the handoff file fresh from the template, replacing any existing one: link the feature, the implementation plan, and the active work item; set the active work item's status.
 
 ## Resume (session start)
 
 1. No handoff file → stop silently.
-2. Read the implementation documents the handoff file links.
+2. Load the implementation documents the handoff file links. A link does not resolve → ask the developer for the correct one; update the handoff file.
 3. Compare the handoff file with the implementation documents:
    - The active work item's status differs from the implementation documents → ask the developer which is correct; write it to both.
-   - The active work item is not the first work item in implementation-plan order whose status is not Done → set it to that work item.
-   - A link does not resolve → ask the developer for the correct one; update the handoff file.
+   - The active work item is not the first work item in implementation-plan order whose status is not Done → set it to that work item; load it.
 4. Report to the developer: active feature, active work item and its status, open threads, and the next step its status implies. Active work item None → report that all work items are Done.
 
 ## Record (a work item is implemented or accepted, or the developer asks for the next work item)
@@ -62,7 +72,7 @@ Apply whenever the handoff file is written.
 - **Snapshot:** Replace outdated content; never append history.
 - **No copies:** Record only what the implementation documents and the repository do not show; link instead of restating. Remove a decision once it is written into the implementation documents.
 - **Line cap:** 50 lines. Over it → shorten Tested and Unrecorded Decisions first; never remove links or the Active work item line.
-- **Statuses:** Write each status change into the work item's Status field too.
+- **Statuses:** Write each status change to the work item too, through Set Status.
   - Not started: waiting for implementation.
   - Implemented: implemented and tested; waiting for developer acceptance.
   - Done: the developer accepted it, and it is committed.

@@ -1,7 +1,7 @@
 ---
 name: setup
 metadata:
-  version: "0.1.0"
+  version: "0.2.0"
 description: "Configure one ASDLC setup target per run (.gitignore, docs/ISSUE-TRACKING.md) through an interview."
 disable-model-invocation: true
 ---

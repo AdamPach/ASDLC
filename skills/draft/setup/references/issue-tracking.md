@@ -53,6 +53,7 @@ Replace each `[Marker]` in the template; leave none.
 - `[Title]`: the title pattern; a work item's contains NN.
 - `[Content]`: the field that holds the document, and its format conversion.
 - `[Work item fields]`: the field, label, or tag that stores Type, and the one that stores Complexity.
+- `[Plan relation]`: the relation type linking the feature item to its implementation plan item. Implementation Plan's Item is part of the feature item → `None`.
 - `[Parent relation]`: the relation type, and which item is the work items' parent.
 - `[Order relation]`: the relation type linking each work item to the next.
 - `[Write state]`: the one tracker state Set Status writes for this ASDLC status.
@@ -60,6 +61,6 @@ Replace each `[Marker]` in the template; leave none.
 - `[Reference syntax]`: the exact text that links a commit to one item, with an `<id>` placeholder. The tracker cannot link commits → `None`.
 - `[Referenced items]`: work item, feature, or both. Reference syntax `None` → `None`.
 - `[Commit template]`: the agreed message format, in a code block; each referenced item's reference syntax sits at its agreed position. Other values the committer supplies are `<name>` placeholders.
-- `[Invocation]`: the exact command or tool call, in a code block. Values a calling skill supplies at run time are `<name>` placeholders.
-- `[Returns]`: what the output contains. List Work Items: the feature's work items in plan order, with ID and status. Find Features: ASDLC features with ID, title, and status.
+- `[Invocation]`: the exact command or tool call, in a code block. Values a calling skill supplies at run time are `<name>` placeholders. A Link Operation whose relation is `None` → `None`; remove its Returns and Notes lines.
+- `[Returns]`: what the output contains. Load Feature: includes the implementation plan's ID when Plan relation is not `None`. List Work Items: the feature's work items in plan order, with ID and status. Find Features: ASDLC features with ID, title, and status.
 - `[Notes]`: limits, conversions, or caveats; none → remove the line.

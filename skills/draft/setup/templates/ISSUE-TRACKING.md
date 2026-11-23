@@ -35,6 +35,7 @@
 
 ## Relations
 
+- Feature → implementation plan: [Plan relation]
 - Parent → child: [Parent relation]
 - Predecessor → successor: [Order relation]
 
@@ -126,6 +127,13 @@
 - Notes: [Notes]
 
 ### Set Status
+
+[Invocation]
+
+- Returns: [Returns]
+- Notes: [Notes]
+
+### Link Feature → Implementation Plan
 
 [Invocation]
 
