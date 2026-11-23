@@ -1,7 +1,7 @@
 ---
 name: feature-plan
 metadata:
-  version: "0.0.1"
+  version: "0.0.2"
 description: "Turn a feature document into an implementation plan and ordered work items through a developer interview grounded in code facts."
 disable-model-invocation: true
 ---
@@ -13,7 +13,7 @@ Turn a feature document into an implementation plan and ordered work items. The 
 # Terminology
 
 - **Feature document:** `feature.md` in the request folder: the feature's business description (purpose and scope, users and permissions, behavior, appearance, acceptance criteria); the source of business requirements.
-- **Request folder:** The `features/NNN-short-request-name/` folder that holds the feature document.
+- **Request folder:** The `docs/features/NNN-short-request-name/` folder that holds the feature document.
 - **Code facts:** Current codebase state relevant to the feature or a decision: existing implementations of similar problems and what is used now, each with its file path.
 - **Implementation decision:** An agreed choice of how to implement the feature: where it fits in the codebase, which libraries it uses, how data and interfaces change.
 - **Work item:** One increment an AI agent implements and the developer reviews as one pull request; numbered from 01 in split order.

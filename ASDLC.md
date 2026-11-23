@@ -8,7 +8,9 @@
 ## Document Map
 
 - `HANDOFF.md` (project root, not committed): short-term memory of where the active feature's implementation stands. Each checkout, including each worktree, has its own copy or none.
+- `docs/ISSUE-TRACKING.md` (committed): how the project stores, loads, and links feature documents in its issue tracker.
 
 ## Skill Map
 
 - `handoff`: starts, resumes, or records the active feature's implementation state in `HANDOFF.md`. Invoke it at session start (Resume), when implementation of a feature starts (Start), and when a work item is implemented or accepted, or the developer asks for the next work item (Record).
+- `setup`: configures one target per run (`.gitignore`, `docs/ISSUE-TRACKING.md`) through an interview. Only the developer invokes it, via `/setup`.

@@ -2,14 +2,6 @@
 
 Applies to: planning ASDLC work not yet started. Remove an item when it is done.
 
-## Setup Skill
-
-The `setup` skill configures a project that adopts ASDLC. It must include:
-
-- **Ignore entry for the handoff file:** Create the project's `.gitignore` when it does not exist, and add `HANDOFF.md` to it when it is not listed. `.gitignore` is committed and shared by every developer of the project, so the change is part of setup, not of `handoff`.
-
-Memo: when the `setup` skill is created, it generates the `.gitignore` entry above. Until then, `handoff` does not edit ignore files.
-
 ## Issue Tracker Integration
 
 Deferred from `handoff`.

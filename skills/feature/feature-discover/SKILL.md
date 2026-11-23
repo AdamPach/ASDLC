@@ -1,7 +1,7 @@
 ---
 name: feature-discover
 metadata:
-  version: "0.0.1"
+  version: "0.0.2"
 description: "Create or update a feature definition from a product request. Use to clarify scope, product behavior, and business rules through interview documents answered by the product owner, resolve gaps and contradictions, and confirm readiness for feature-write. Leave technical implementation choices for later."
 disable-model-invocation: true
 ---
@@ -55,7 +55,7 @@ Based on the available inputs, create or update the Feature Definition and any s
 ## Folder Structure
 
 ```text
-features/
+docs/features/
 ├── 001-short-request-name/
 │   ├── feature-definition.md
 │   ├── questions-001.md
@@ -66,7 +66,7 @@ features/
 
 ## Location and Naming
 
-Store feature documents under `features/` at the target project's root. Use `features/NNN-short-request-name/` for each Product Request. Number request folders sequentially from `001` and use lowercase names with hyphens. Reuse the existing request folder in Update mode.
+Store feature documents under `docs/features/` in the target project. Use `docs/features/NNN-short-request-name/` for each Product Request. Number request folders sequentially from `001` and use lowercase names with hyphens. Reuse the existing request folder in Update mode.
 
 ## Feature Definition
 

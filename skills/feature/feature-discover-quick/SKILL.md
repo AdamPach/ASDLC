@@ -1,7 +1,7 @@
 ---
 name: feature-discover-quick
 metadata:
-  version: "0.0.1"
+  version: "0.0.2"
 description: "Create or update a feature definition through a chat interview with the developer and confirm it is ready for feature-write."
 disable-model-invocation: true
 ---
@@ -55,7 +55,7 @@ Create or update one Feature Definition per Product Request. It captures the fea
 
 ## Location and Naming
 
-Store feature documents under `features/` at the target project's root. Use `features/NNN-short-request-name/feature-definition.md` for each Product Request. Number request folders sequentially from `001` and use lowercase names with hyphens. Reuse the existing request folder in Update mode.
+Store feature documents under `docs/features/` in the target project. Use `docs/features/NNN-short-request-name/feature-definition.md` for each Product Request. Number request folders sequentially from `001` and use lowercase names with hyphens. Reuse the existing request folder in Update mode.
 
 ## Feature Definition
 
