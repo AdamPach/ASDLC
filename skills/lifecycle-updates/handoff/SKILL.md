@@ -1,8 +1,8 @@
 ---
 name: handoff
 metadata:
-  version: "0.3.2"
-description: "Start, resume, or record the implementation state of the active feature in HANDOFF.md, the short-term memory between sessions; reads and writes the feature's documents and statuses in the issue tracker. Use when implementation of a feature starts, at session start, when AI stops implementing a work item before it is implemented and tested, when a work item is implemented or accepted, and when the developer asks for the next work item."
+  version: "0.4.0"
+description: "Start, resume, or record the implementation state of the active feature in HANDOFF.md, the short-term memory between sessions; reads and writes the feature's documents and statuses in the issue tracker, or in the feature's request folder when the project has no issue tracker. Use when implementation of a feature starts, at session start, when AI stops implementing a work item before it is implemented and tested, when a work item is implemented or accepted, and when the developer asks for the next work item."
 ---
 
 # Goal
@@ -12,7 +12,9 @@ Keep `HANDOFF.md` a short snapshot of where the active feature's implementation 
 # Terminology
 
 - **Handoff file:** `HANDOFF.md` in the root of the current checkout. Each checkout, including each worktree, has its own or none.
-- **Tracking file:** `docs/ISSUE-TRACKING.md`. Access the issue tracker only through its Operations.
+- **Tracking file:** `docs/ISSUE-TRACKING.md`.
+- **Request folder:** `docs/features/NNN-short-request-name/`, holding a feature's `feature.md`, `implementation-plan.md`, and `work-items/NN-<short-name>.md`.
+- **Source:** Where the feature's documents live: Tracker when the tracking file exists; otherwise Local.
 - **Active feature:** The feature the handoff file covers; at Start, the feature named in Details.
 - **Implementation documents:** The active feature's implementation plan and work items.
 - **Active work item:** The first work item in implementation-plan order whose status is not Done.
@@ -20,15 +22,28 @@ Keep `HANDOFF.md` a short snapshot of where the active feature's implementation 
 # Inputs
 
 - **Event:** Required. Start, Resume, or Record; each Procedure section states when it applies. Not supplied → infer it from the turn; ask when unclear.
-- **Details:** Optional. Facts for the event: the feature's tracker link or ID (Start), where work stopped and why, tests run, developer acceptance. Missing → take them from the turn.
+- **Details:** Optional. Facts for the event: the feature's tracker link or ID, or its request folder (Start); where work stopped and why; tests run; developer acceptance. Missing → take them from the turn.
 
-# Tracker Access
+# Document Access
 
-Applies whenever a document or status is loaded, written, or linked.
+Applies whenever a feature, document, or status is found, loaded, written, or linked. Follow the part for the source.
 
+## Tracker
+
+- Access the issue tracker only through the tracking file's Operations.
+- Find the feature: its tracker link or ID in Details.
+- Find the implementation plan: from the feature per the tracking file's Document Mapping and Relations.
 - Load the implementation documents: Load Implementation Plan; List Work Items for statuses and order; Load Work Item for the active work item only.
 - Write a status: Set Status.
 - Link an item: its tracker link; none → its ID.
+
+## Local
+
+- Find the feature: the request folder Details name by path or name. Not named or ambiguous → list the request folders that have an implementation plan and work items not all Done; the developer chooses.
+- Find the implementation plan: `implementation-plan.md` in the request folder.
+- Load the implementation documents: read the implementation plan for the work item order, each work item's Status line, and the active work item in full.
+- Write a status: edit the work item's Status line.
+- Link an item: its path relative to the project root.
 
 # Procedure
 
@@ -37,12 +52,12 @@ Applies whenever a document or status is loaded, written, or linked.
 
 ## Start (implementation of a feature begins)
 
-1. Tracking file missing → tell the developer to run `/setup issue-tracking`; stop.
+1. Find the feature.
 2. Handoff file covers the same feature → follow Resume; stop.
 3. Handoff file covers another feature:
    - That feature has work items not Done → name them, ask whether to replace the handoff file; declined → stop.
    - All Done → continue silently.
-4. Find the implementation plan from the feature per the tracking file's Document Mapping and Relations.
+4. Find the implementation plan.
 5. Load the implementation documents.
 6. Create the handoff file fresh from the template, replacing any existing one: link the feature, the implementation plan, and the active work item; set the active work item's status.
 
@@ -76,7 +91,7 @@ Apply whenever the handoff file is written.
 - **Snapshot:** Replace outdated content; never append history.
 - **Minimal:** Write only what the next session needs to continue the active work item, in the fewest lines.
 - **No copies:** Record only what the implementation documents and the repository do not show; link instead of restating.
-- **Statuses:** Write each status change to the work item too, through Set Status.
+- **Statuses:** Write each status change to the work item too.
   - Not started: waiting for implementation.
   - In progress: AI stopped before the work item was implemented and tested; Progress states where, at least one Open Thread states why.
   - Implemented: implemented and tested; waiting for developer acceptance.

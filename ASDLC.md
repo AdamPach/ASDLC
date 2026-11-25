@@ -8,7 +8,8 @@
 ## Document Map
 
 - `HANDOFF.md` (project root, not committed): short-term memory of where the active feature's implementation stands. Each checkout, including each worktree, has its own copy or none.
-- `docs/ISSUE-TRACKING.md` (committed): how the project stores, loads, and links feature documents in its issue tracker.
+- `docs/ISSUE-TRACKING.md` (committed, optional): how the project stores, loads, and links feature documents in its issue tracker.
+- `docs/features/` (not committed): one `NNN-short-request-name/` folder per feature, holding its `feature.md`, `implementation-plan.md`, and `work-items/`; the source of the implementation documents when the project has no `docs/ISSUE-TRACKING.md`.
 
 ## Skill Map
 

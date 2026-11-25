@@ -6,10 +6,11 @@ Applies to: planning ASDLC work not yet started. Items are listed in the order t
 
 Closes gaps found in the review of the implementation skills.
 
-- `work-load`: loads a feature from the issue tracker and invokes `handoff` with event Start, so the implementation of a feature always starts through one explicit entry point.
+- `work-load`: loads a feature from the issue tracker or its request folder and invokes `handoff` with event Start, so the implementation of a feature always starts through one explicit entry point.
 - Only the developer invokes it, via `/work-load`; excluded from the Skill Map in `ASDLC.md`.
 - Feature tracker link or ID not supplied → run Find Features, list the features whose work items are not all Done, and let the developer choose.
-- Add Load Feature to `handoff`'s Tracker Access: Start needs it to find the implementation plan and the feature name.
+- No `docs/ISSUE-TRACKING.md` → load the feature from its request folder; not named → list the request folders that have an implementation plan and work items not all Done, and let the developer choose.
+- Add Load Feature to the Tracker part of `handoff`'s Document Access: Start needs it to find the implementation plan and the feature name.
 - Remove the Start moment from `handoff`'s entry in the Skill Map of `ASDLC.md` and from `handoff`'s description, so AI never invokes Start on its own.
 - Point `feature-push`'s Report to it.
 
@@ -59,5 +60,5 @@ Deferred from `handoff`.
 
 - Decide how git context is used during implementation.
 - `feature-plan` defines a work item as one pull request, while `work-done` pushes the current branch and creates no pull request. Decide where the branch and pull request per work item are created: in the Implement Skill or in `work-done`, not in `work-load`, which runs once per feature.
-- `work-done` stages all uncommitted changes, including changes made before the active work item started, such as the request folder `feature-push` deletes without committing.
+- `work-done` stages all uncommitted changes, including changes made before the active work item started.
 - Requires: Implement Skill.
