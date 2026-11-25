@@ -1,7 +1,7 @@
 ---
 name: feature-push
 metadata:
-  version: "0.0.1"
+  version: "0.0.2"
 description: "Push a planned feature's documents (feature, implementation plan, work items) to the issue tracker per docs/ISSUE-TRACKING.md, link them, and delete the local request folder, so the tracker becomes their only source of truth. Only the developer invokes it, via /feature-push, before implementation starts."
 disable-model-invocation: true
 ---
@@ -48,4 +48,4 @@ Convert each document per its Document Mapping. Any Operation fails → report t
 ## 4. Delete and Report
 
 1. Delete the request folder. Never commit.
-2. Report each created item with its tracker link, and that the deletion is uncommitted; recommend implementing work item 01 in a new session.
+2. Report each created item with its tracker link, and that the deletion is uncommitted; recommend starting implementation of the feature in a new session, giving the feature's tracker link.

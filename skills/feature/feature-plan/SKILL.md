@@ -1,7 +1,7 @@
 ---
 name: feature-plan
 metadata:
-  version: "0.0.2"
+  version: "0.0.3"
 description: "Turn a feature document into an implementation plan and ordered work items through a developer interview grounded in code facts."
 disable-model-invocation: true
 ---
@@ -91,4 +91,4 @@ Split rules:
 
 ## 6. Report
 
-1. Report the saved paths; recommend implementing work item 01 in a new session.
+1. Report the saved paths; recommend pushing the feature document, implementation plan, and work items to the issue tracker before implementation.

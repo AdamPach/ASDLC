@@ -44,6 +44,7 @@
 | ASDLC status | Write as | Read from |
 |---|---|---|
 | Not started | [Write state] | [Read states] |
+| In progress | [Write state] | [Read states] |
 | Implemented | [Write state] | [Read states] |
 | Done | [Write state] | [Read states] |
 
